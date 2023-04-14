@@ -1,13 +1,55 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Contacts from './screens/Contacts';
+
+
+
+//crear constante para generar las rutas de los sceens
+
+const Stack = createNativeStackNavigator();
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+   <NavigationContainer>
+    <Stack.Navigator 
+    initialRouteName='Home'
+    >
+      <Stack.Screen name="Home" component={HomeScreen} options={{title:"Inicio"}}/>
+      <Stack.Screen name="Products" component={ProductScreen} options={{title:"Productos"}}/>
+      <Stack.Screen name="Contacts" component={Contacts} options={{title:"Contactenos"}}/>
+    </Stack.Navigator>
+   </NavigationContainer>
   );
+}
+
+function HomeScreen({navigation}){
+  return(
+  <View style={styles.container}>
+    <Text style={{marginBottom:20}}>Estamos en inicio</Text>
+    <Button
+    title="Ir a productos"
+    onPress={()=>{
+     navigation.navigate('Products')
+    }}
+    />
+  </View>
+  )
+}
+
+function ProductScreen({navigation}){
+  return(
+    <View style={styles.container}>
+    <Text style={{marginBottom:20}}>Estamos en Productos</Text>
+    <Button
+    title="Ir a contactenos"
+    onPress={()=>{
+     navigation.navigate('Contacts')
+    }}
+    />
+  </View>
+  )
 }
 
 const styles = StyleSheet.create({
