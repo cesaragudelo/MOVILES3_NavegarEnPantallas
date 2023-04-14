@@ -39,13 +39,15 @@ function HomeScreen({navigation}){
 }
 
 function ProductScreen({navigation}){
+  let title="este es el titulo"
+  let fullname="cesar"
   return(
     <View style={styles.container}>
-    <Text style={{marginBottom:20}}>Estamos en Productos</Text>
+    <Text style={{marginBottom:10}}>Estamos en Productos</Text>
     <Button
     title="Ir a contactenos"
     onPress={()=>{
-     navigation.navigate('Contacts')
+     navigation.navigate('Contacts',{title:title,name:fullname})
     }}
     />
   </View>
